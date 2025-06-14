@@ -20,6 +20,7 @@ export default defineConfig(({ mode }) => ({
         },
       },
     },
+    chunkSizeWarningLimit: 1000, // Increase chunk size warning limit to 1 MB
   },
   plugins: [
     react(),
