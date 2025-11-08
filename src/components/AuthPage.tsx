@@ -121,7 +121,8 @@ const AuthPage = ({ isDark = true, onThemeToggle }: AuthPageProps) => {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: 'http://localhost:8080',
+          redirectTo: import.meta.env.VITE_REDIRECT_URI,
+
           queryParams: {
             access_type: 'offline',
             prompt: 'consent',
