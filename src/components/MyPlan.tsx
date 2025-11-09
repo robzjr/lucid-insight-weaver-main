@@ -58,7 +58,7 @@ const MyPlan = ({ onUpgrade, isDark = true, planType = 'free' }: MyPlanProps) =>
         ? '1 interpretation remaining'
         : `${interpretationsLeft} interpretations remaining`;
     if (isPremiumUser) return `${interpretationsLeft} interpretations left`;
-    if (isUltimateUser) return 'Unlimited';
+    if (isUltimateUser) return '100';
     return '';
   };
 
@@ -121,7 +121,7 @@ const MyPlan = ({ onUpgrade, isDark = true, planType = 'free' }: MyPlanProps) =>
             {(isFreeUser || isBasicUser) && (
               <div className="space-y-3">
                 <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                  Ready to unlock unlimited interpretations and advanced features?
+                  Ready to unlock more interpretations and advanced features?
                 </p>
 
                 <div className="space-y-2">

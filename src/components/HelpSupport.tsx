@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -24,8 +23,8 @@ const HelpSupport = ({ isDark = true }: HelpSupportProps) => {
 
   const faqs = [
     {
-      question: "How many dream interpretations do I get with the free plan?",
-      answer: "With the free plan, you get 5 dream interpretations per month. These reset on the 1st of each month. Premium users get unlimited interpretations."
+      question: "How many interpretations do I get?",
+      answer: "With the free plan, you get 5 dream interpretations per month. These reset on the 1st of each month. Premium users get 50 interpretations per month, while Ultimate users get 100 interpretations per month."
     },
     {
       question: "What are the different interpretation styles?",
@@ -40,8 +39,8 @@ const HelpSupport = ({ isDark = true }: HelpSupportProps) => {
       answer: "Yes! You can edit your dream descriptions from the Library section. Simply click the edit icon next to any saved dream to make changes."
     },
     {
-      question: "How do I upgrade to Premium?",
-      answer: "You can upgrade to Premium from the Settings page or the Subscription section. Premium gives you unlimited interpretations and advanced features."
+      question: "How do I upgrade my plan?",
+      answer: "You can upgrade to Premium or Ultimate from the Settings page or the Subscription section. Premium gives you 50 interpretations per month and advanced features, while Ultimate offers 100 interpretations and exclusive features."
     },
     {
       question: "Is my dream data private and secure?",

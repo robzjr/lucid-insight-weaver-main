@@ -27,7 +27,7 @@ const UsageDisplay = ({ interpretationsLeft, isDark = true }: UsageDisplayProps)
             <div className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
               {isFreeUser
                 ? `${interpretationsLeft} interpretations left`
-                : 'Unlimited interpretations'}
+                : '100 interpretations per month'}
             </div>
           </div>
         </div>
