@@ -9,6 +9,7 @@ import { Sparkles, Zap, Star, AlertCircle, CreditCard, Wallet, CreditCardIcon } 
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Loader2 } from 'lucide-react';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface PaymentModalProps {
   isOpen: boolean;
@@ -263,131 +264,133 @@ const PaymentModal = ({ isOpen, onClose, onPaymentSuccess, isDark = true }: Paym
   return (
     <>
       <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className={`max-w-4xl max-h-[90vh] overflow-y-auto ${
+        <DialogContent className={`max-w-4xl max-h-[90vh] p-0 ${
           isDark ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'
         }`}>
-          <DialogHeader>
-            <DialogTitle className={`text-center text-2xl hologram-text ${
-              isDark ? 'text-white' : 'text-slate-900'
-            }`}>
-              Unlock More Dream Interpretations
-            </DialogTitle>
-            <p className={`text-center ${
-              isDark ? 'text-slate-400' : 'text-slate-600'
-            }`}>
-              Choose a package to continue your dream journey with Ramel
-            </p>
-          </DialogHeader>
-
-          {/* Payment Provider Selection */}
-          <div className={`mt-6 p-4 rounded-lg border ${
-            isDark ? 'bg-slate-800/50 border-slate-700' : 'bg-slate-50 border-slate-200'
-          }`}>
-            <h3 className={`text-lg font-semibold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              Select Payment Method
-            </h3>
-            <RadioGroup
-              value={selectedProvider}
-              onValueChange={(value) => setSelectedProvider(value as PaymentProvider)}
-              className="flex flex-col space-y-3"
-            >
-              <div className={`flex items-center space-x-2 p-3 rounded-lg border ${
-                selectedProvider === 'paymob' 
-                  ? isDark ? 'border-blue-500 bg-blue-500/10' : 'border-blue-500 bg-blue-50'
-                  : isDark ? 'border-slate-700' : 'border-slate-200'
+          <ScrollArea className="h-[90vh] px-6 py-4">
+            <DialogHeader>
+              <DialogTitle className={`text-center text-2xl hologram-text ${
+                isDark ? 'text-white' : 'text-slate-900'
               }`}>
-                <RadioGroupItem value="paymob" id="paymob" />
-                <Label htmlFor="paymob" className={`flex items-center space-x-2 cursor-pointer ${
-                  isDark ? 'text-white' : 'text-slate-900'
-                }`}>
-                  <CreditCard className="h-5 w-5" />
-                  <span>Credit Card (Paymob)</span>
-                </Label>
-              </div>
-              <div className={`flex items-center space-x-2 p-3 rounded-lg border ${
-                selectedProvider === 'paypal'
-                  ? isDark ? 'border-blue-500 bg-blue-500/10' : 'border-blue-500 bg-blue-50'
-                  : isDark ? 'border-slate-700' : 'border-slate-200'
+                Unlock More Dream Interpretations
+              </DialogTitle>
+              <p className={`text-center ${
+                isDark ? 'text-slate-400' : 'text-slate-600'
               }`}>
-                <RadioGroupItem value="paypal" id="paypal" />
-                <Label htmlFor="paypal" className={`flex items-center space-x-2 cursor-pointer ${
-                  isDark ? 'text-white' : 'text-slate-900'
-                }`}>
-                  <CreditCardIcon className="h-5 w-5" />
-                  <span>PayPal</span>
-                </Label>
-              </div>
-            </RadioGroup>
-          </div>
+                Choose a package to continue your dream journey with Ramel
+              </p>
+            </DialogHeader>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-            {paymentPackages.map((pkg) => (
-              <Card 
-                key={pkg.id} 
-                className={`relative transition-all duration-300 hover:scale-105 ${
-                  pkg.popular 
-                    ? 'ring-2 ring-purple-500 ring-opacity-50' 
-                    : ''
-                } ${
-                  isDark 
-                    ? 'glass-card border-slate-700' 
-                    : 'bg-white border-slate-200'
-                }`}
+            {/* Payment Provider Selection */}
+            <div className={`mt-6 p-4 rounded-lg border ${
+              isDark ? 'bg-slate-800/50 border-slate-700' : 'bg-slate-50 border-slate-200'
+            }`}>
+              <h3 className={`text-lg font-semibold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                Select Payment Method
+              </h3>
+              <RadioGroup
+                value={selectedProvider}
+                onValueChange={(value) => setSelectedProvider(value as PaymentProvider)}
+                className="flex flex-col space-y-3"
               >
-                {pkg.popular && (
-                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-                <CardHeader className="text-center">
-                  <div className={`w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-r ${pkg.color} flex items-center justify-center text-white`}>
-                    {pkg.icon}
-                  </div>
-                  <CardTitle className={`text-lg ${isDark ? 'text-white' : 'text-slate-900'}`}>{pkg.name}</CardTitle>
-                  <div className={`text-2xl font-bold ${isDark ? 'text-purple-400' : 'text-purple-600'}`}>{pkg.price} {pkg.currency}</div>
-                  <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>{pkg.interpretations} interpretations</p>
-                </CardHeader>
-                <CardContent>
-                  <Button
-                    onClick={() => handlePackageSelect(pkg)}
-                    disabled={isProcessing}
-                    className={`w-full bg-gradient-to-r ${pkg.color} hover:opacity-90 text-white font-semibold py-3 rounded-xl transition-all duration-300 transform hover:scale-105`}
-                  >
-                    {isProcessing ? (
-                      <div className="flex items-center space-x-2">
-                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        <span>Processing...</span>
-                      </div>
-                    ) : (
-                      'Choose Package'
-                    )}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className={`mt-6 p-4 rounded-lg border ${
-            isDark 
-              ? 'bg-slate-800/50 border-slate-700' 
-              : 'bg-slate-50 border-slate-200'
-          }`}>
-            <div className="flex items-center space-x-2 mb-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className={`text-sm font-medium ${
-                isDark ? 'text-slate-300' : 'text-slate-700'
-              }`}>
-                Secure Payment by {selectedProvider === 'paymob' ? 'Paymob' : 'PayPal'}
-              </span>
+                <div className={`flex items-center space-x-2 p-3 rounded-lg border ${
+                  selectedProvider === 'paymob' 
+                    ? isDark ? 'border-blue-500 bg-blue-500/10' : 'border-blue-500 bg-blue-50'
+                    : isDark ? 'border-slate-700' : 'border-slate-200'
+                }`}>
+                  <RadioGroupItem value="paymob" id="paymob" />
+                  <Label htmlFor="paymob" className={`flex items-center space-x-2 cursor-pointer ${
+                    isDark ? 'text-white' : 'text-slate-900'
+                  }`}>
+                    <CreditCard className="h-5 w-5" />
+                    <span>Credit Card (Paymob)</span>
+                  </Label>
+                </div>
+                <div className={`flex items-center space-x-2 p-3 rounded-lg border ${
+                  selectedProvider === 'paypal'
+                    ? isDark ? 'border-blue-500 bg-blue-500/10' : 'border-blue-500 bg-blue-50'
+                    : isDark ? 'border-slate-700' : 'border-slate-200'
+                }`}>
+                  <RadioGroupItem value="paypal" id="paypal" />
+                  <Label htmlFor="paypal" className={`flex items-center space-x-2 cursor-pointer ${
+                    isDark ? 'text-white' : 'text-slate-900'
+                  }`}>
+                    <CreditCardIcon className="h-5 w-5" />
+                    <span>PayPal</span>
+                  </Label>
+                </div>
+              </RadioGroup>
             </div>
-            <p className={`text-xs ${
-              isDark ? 'text-slate-500' : 'text-slate-600'
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+              {paymentPackages.map((pkg) => (
+                <Card 
+                  key={pkg.id} 
+                  className={`relative transition-all duration-300 hover:scale-105 ${
+                    pkg.popular 
+                      ? 'ring-2 ring-purple-500 ring-opacity-50' 
+                      : ''
+                  } ${
+                    isDark 
+                      ? 'glass-card border-slate-700' 
+                      : 'bg-white border-slate-200'
+                  }`}
+                >
+                  {pkg.popular && (
+                    <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                      <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                        Most Popular
+                      </span>
+                    </div>
+                  )}
+                  <CardHeader className="text-center">
+                    <div className={`w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-r ${pkg.color} flex items-center justify-center text-white`}>
+                      {pkg.icon}
+                    </div>
+                    <CardTitle className={`text-lg ${isDark ? 'text-white' : 'text-slate-900'}`}>{pkg.name}</CardTitle>
+                    <div className={`text-2xl font-bold ${isDark ? 'text-purple-400' : 'text-purple-600'}`}>{pkg.price} {pkg.currency}</div>
+                    <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>{pkg.interpretations} interpretations</p>
+                  </CardHeader>
+                  <CardContent>
+                    <Button
+                      onClick={() => handlePackageSelect(pkg)}
+                      disabled={isProcessing}
+                      className={`w-full bg-gradient-to-r ${pkg.color} hover:opacity-90 text-white font-semibold py-3 rounded-xl transition-all duration-300 transform hover:scale-105`}
+                    >
+                      {isProcessing ? (
+                        <div className="flex items-center space-x-2">
+                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                          <span>Processing...</span>
+                        </div>
+                      ) : (
+                        'Choose Package'
+                      )}
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className={`mt-6 p-4 rounded-lg border ${
+              isDark 
+                ? 'bg-slate-800/50 border-slate-700' 
+                : 'bg-slate-50 border-slate-200'
             }`}>
-              Your payment is processed securely through {selectedProvider === 'paymob' ? 'Paymob' : 'PayPal'}. You'll be redirected to complete your purchase.
-            </p>
-          </div>
+              <div className="flex items-center space-x-2 mb-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className={`text-sm font-medium ${
+                  isDark ? 'text-slate-300' : 'text-slate-700'
+                }`}>
+                  Secure Payment by {selectedProvider === 'paymob' ? 'Paymob' : 'PayPal'}
+                </span>
+              </div>
+              <p className={`text-xs ${
+                isDark ? 'text-slate-500' : 'text-slate-600'
+              }`}>
+                Your payment is processed securely through {selectedProvider === 'paymob' ? 'Paymob' : 'PayPal'}. You'll be redirected to complete your purchase.
+              </p>
+            </div>
+          </ScrollArea>
         </DialogContent>
       </Dialog>
 
