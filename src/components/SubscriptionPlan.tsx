@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Check, Crown, Calendar, Infinity, Users, Zap, Star } from 'lucide-react';
+import { Check, Crown, Users, Zap, Star } from 'lucide-react';
 import { useUserUsage } from '@/hooks/useUserUsage';
 import { useReferralSystem } from '@/hooks/useReferralSystem';
 import { toast } from 'sonner';
@@ -49,7 +48,7 @@ const SubscriptionPlan = ({ isDark = true, onUpgrade }: SubscriptionPlanProps) =
   ];
 
   const ultimateFeatures = [
-    "Unlimited dream interpretations",
+    "100 dream interpretations per month",
     "Advanced AI analysis with Gemini 2.5 Pro",
     "All interpretation styles + exclusive content",
     "Advanced dream pattern insights",
@@ -94,9 +93,7 @@ const SubscriptionPlan = ({ isDark = true, onUpgrade }: SubscriptionPlanProps) =
 
       <div className="grid md:grid-cols-3 gap-6">
         {/* Basic Pack */}
-        <Card className={`relative ${
-          isDark ? 'glass-card border-slate-700' : 'bg-white border-slate-200'
-        }`}>
+        <Card className={`relative ${isDark ? 'glass-card border-slate-700' : 'bg-white border-slate-200'}`}>
           <CardHeader>
             <CardTitle className={`text-xl ${isDark ? 'text-white' : 'text-slate-900'}`}>
               Basic Pack
@@ -108,9 +105,7 @@ const SubscriptionPlan = ({ isDark = true, onUpgrade }: SubscriptionPlanProps) =
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className={`p-3 rounded-lg border border-green-500/30 ${
-              isDark ? 'bg-green-950/20' : 'bg-green-50'
-            }`}>
+            <div className={`p-3 rounded-lg border border-green-500/30 ${isDark ? 'bg-green-950/20' : 'bg-green-50'}`}>
               <div className="flex items-center justify-center space-x-2">
                 <Zap className="h-5 w-5 text-green-500" />
                 <span className={`font-medium ${isDark ? 'text-green-300' : 'text-green-700'}`}>
@@ -132,9 +127,7 @@ const SubscriptionPlan = ({ isDark = true, onUpgrade }: SubscriptionPlanProps) =
 
             <Button 
               variant="outline" 
-              className={`w-full ${
-                isDark ? 'border-slate-600 text-slate-300' : 'border-slate-300'
-              }`}
+              className={`w-full ${isDark ? 'border-slate-600 text-slate-300' : 'border-slate-300'}`}
               disabled
             >
               Current Plan
@@ -143,9 +136,7 @@ const SubscriptionPlan = ({ isDark = true, onUpgrade }: SubscriptionPlanProps) =
         </Card>
 
         {/* Premium Pack */}
-        <Card className={`relative border-2 border-purple-500 ${
-          isDark ? 'glass-card' : 'bg-white'
-        }`}>
+        <Card className={`relative border-2 border-purple-500 ${isDark ? 'glass-card' : 'bg-white'}`}>
           <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
             <Badge className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-4 py-1">
               <Crown className="h-3 w-3 mr-1" />
@@ -170,9 +161,7 @@ const SubscriptionPlan = ({ isDark = true, onUpgrade }: SubscriptionPlanProps) =
             </p>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className={`p-3 rounded-lg border border-purple-500/30 ${
-              isDark ? 'bg-purple-950/20' : 'bg-purple-50'
-            }`}>
+            <div className={`p-3 rounded-lg border border-purple-500/30 ${isDark ? 'bg-purple-950/20' : 'bg-purple-50'}`}>
               <div className="flex items-center justify-center space-x-2">
                 <Zap className="h-5 w-5 text-purple-500" />
                 <span className={`font-medium ${isDark ? 'text-purple-300' : 'text-purple-700'}`}>
@@ -196,16 +185,14 @@ const SubscriptionPlan = ({ isDark = true, onUpgrade }: SubscriptionPlanProps) =
               onClick={onUpgrade}
               className="w-full bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold"
             >
-              <Crown className="h-4 w-4 mr-2" />
+              <Crown className="h-4 h-4 mr-2" />
               Upgrade to Premium
             </Button>
           </CardContent>
         </Card>
 
         {/* Ultimate Pack */}
-        <Card className={`relative border-2 border-yellow-500 ${
-          isDark ? 'glass-card' : 'bg-white'
-        }`}>
+        <Card className={`relative border-2 border-yellow-500 ${isDark ? 'glass-card' : 'bg-white'}`}>
           <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
             <Badge className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-1">
               <Star className="h-3 w-3 mr-1" />
@@ -230,13 +217,11 @@ const SubscriptionPlan = ({ isDark = true, onUpgrade }: SubscriptionPlanProps) =
             </p>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className={`p-3 rounded-lg border border-yellow-500/30 ${
-              isDark ? 'bg-yellow-950/20' : 'bg-yellow-50'
-            }`}>
+            <div className={`p-3 rounded-lg border border-yellow-500/30 ${isDark ? 'bg-yellow-950/20' : 'bg-yellow-50'}`}>
               <div className="flex items-center justify-center space-x-2">
-                <Infinity className="h-5 w-5 text-yellow-500" />
+                <Zap className="h-5 w-5 text-yellow-500" />
                 <span className={`font-medium ${isDark ? 'text-yellow-300' : 'text-yellow-700'}`}>
-                  Unlimited Interpretations
+                  100 Interpretations/Month
                 </span>
               </div>
             </div>
@@ -256,7 +241,7 @@ const SubscriptionPlan = ({ isDark = true, onUpgrade }: SubscriptionPlanProps) =
               onClick={onUpgrade}
               className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-semibold"
             >
-              <Star className="h-4 w-4 mr-2" />
+              <Star className="h-4 h-4 mr-2" />
               Upgrade to Ultimate
             </Button>
           </CardContent>
