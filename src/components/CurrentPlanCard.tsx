@@ -76,7 +76,7 @@ const CurrentPlanCard = ({
         {isFreeUser && (
           <div className="space-y-2">
             <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-              Unlock 50 interpretations per month and advanced features with Premium
+              Unlock 25 interpretations per month and advanced features with Premium
             </p>
             <div className="flex space-x-2">
               <Button onClick={onUpgrade} className="flex-1 bg-gradient-to-r from-purple-600 to-cyan-600 text-white" size="sm">

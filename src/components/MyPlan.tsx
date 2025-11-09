@@ -64,7 +64,7 @@ const MyPlan = ({ onUpgrade, isDark = true, planType = 'free' }: MyPlanProps) =>
 
   return (
     <>
-      <div className="container mx-auto p-4 max-w-2xl space-y-6">
+      <div className="container mx-auto p-2 max-w-2xl space-y-6">
         <Card className={`${isDark ? 'glass-card border-slate-700' : 'bg-white/90 border-slate-200'}`}>
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">

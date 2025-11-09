@@ -12,7 +12,7 @@ const UsageDisplay = ({ interpretationsLeft, isDark = true }: UsageDisplayProps)
   const isFreeUser = interpretationsLeft <= 5;
 
   return (
-    <Card className={`${isDark ? 'glass-card border-slate-700' : 'bg-white/90 border-slate-200'} mb-4`}>
+    <Card className={`${isDark ? 'glass-card border-slate-700' : 'bg-white/90 border-slate-200'} mb-4 mx-4`}>
       <CardContent className="flex items-center justify-between p-4">
         <div className="flex items-center space-x-3">
           {isFreeUser ? (
